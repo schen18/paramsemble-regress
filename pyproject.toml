@@ -1,0 +1,73 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "paramsemble-regress"
+version = "0.5.0"
+description = "Parametric Ensemble Regression - A Python machine learning library for regression with automated feature selection and ensemble modeling"
+readme = "README.md"
+requires-python = ">=3.8"
+license = {text = "MIT"}
+authors = [
+    {name = "Stephen Chen"}
+]
+keywords = ["machine learning", "regression", "ensemble", "feature selection", "lasso", "parametric"]
+classifiers = [
+    "Intended Audience :: Developers",
+    "Intended Audience :: Science/Research",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+]
+
+dependencies = [
+    "scikit-learn>=1.0.0",
+    "numpy>=1.20.0",
+    "pandas>=1.3.0",
+    "scipy>=1.7.0",
+]
+
+[project.optional-dependencies]
+mars = [
+    "py-earth>=0.1.0",
+]
+dev = [
+    "pytest>=7.0.0",
+    "pytest-cov>=3.0.0",
+    "hypothesis>=6.0.0",
+]
+
+[project.urls]
+Homepage = "https://github.com/schen18/paramsemble-regress"
+Documentation = "https://paramsemble-regress.readthedocs.io"
+Repository = "https://github.com/schen18/paramsemble-regress"
+"Bug Tracker" = "https://github.com/schen18/paramsemble-regress/issues"
+
+[tool.setuptools]
+packages = ["paramsemble", "paramsemble.tests"]
+
+[tool.pytest.ini_options]
+testpaths = ["paramsemble/tests"]
+python_files = ["test_*.py"]
+python_classes = ["Test*"]
+python_functions = ["test_*"]
+addopts = "-v --tb=short"
+
+[tool.coverage.run]
+source = ["paramsemble"]
+omit = ["paramsemble/tests/*"]
+
+[tool.coverage.report]
+exclude_lines = [
+    "pragma: no cover",
+    "def __repr__",
+    "raise AssertionError",
+    "raise NotImplementedError",
+    "if __name__ == .__main__.:",
+]
